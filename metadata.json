@@ -1,0 +1,6 @@
+{
+  "name": "[SHOP NAME]",
+  "description": "Ultra-premium luxury dark-themed menswear boutique featuring 3D perspective animations, kinetic scroll, glassmorphics, and secure JWT API integrations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
