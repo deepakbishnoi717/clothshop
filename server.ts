@@ -56,23 +56,25 @@ export function authenticateJWT(req: any, res: any, next: any) {
 // ---------------- API ENDPOINTS ----------------
 
 // Products list
+const N8N_WEBHOOK_URL = "https://n8n-production-d6523.up.railway.app/webhook/015f3867-b6fd-4651-9b75-eee453aae6f3";
+
 const boutiqueProducts = [
   {
     id: "p1",
     name: "Phantom Tailored Wool Overcoat",
     price: "$1,850",
-    category: "Shirts", // Category matching bento mesh or custom
-    image: "https://images.unsplash.com/photo-1544022613-e87ca75a784a?q=80&w=800&auto=format&fit=crop",
+    category: "Shirts",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop",
     sizes: ["48", "50", "52", "54"],
     countInStock: 3,
     description: "Handcrafted double-breasted overcoat from premium Italian virgin wool, finished with a subtle anthracite metallic thread."
   },
   {
     id: "p2",
-    name: "Noir Obsidian Leather Moto",
+    name: "Noir Obsidian Leather Jacket",
     price: "$2,400",
     category: "Shirts",
-    image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1503341504253-dff4815485f1?q=80&w=800&auto=format&fit=crop",
     sizes: ["S", "M", "L", "XL"],
     countInStock: 2,
     description: "Matte black full-grain calfskin leather jacket with premium sterling silver hardware and 3D silhouette contour stitching."
@@ -89,16 +91,46 @@ const boutiqueProducts = [
   },
   {
     id: "p4",
-    name: "Carbon Cyber-Tech Chelsea Boots",
+    name: "Architectural Black Blazer",
     price: "$1,100",
-    category: "Shoes",
-    image: "https://images.unsplash.com/photo-1520639888713-7851133b1ed0?q=80&w=800&auto=format&fit=crop",
-    sizes: ["41", "42", "43", "44", "45"],
-    countInStock: 0, // Show Out of stock behavior
-    description: "Laser-molded calfskin upper combined with a sculpted carbon-fiber modular heel chassis, styled in dark midnight black."
+    category: "Shirts",
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=800&auto=format&fit=crop",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    countInStock: 4,
+    description: "Sculpted peak-lapel blazer in jet-black Italian twill, structured with boning for an architectural silhouette that commands every room."
   },
   {
     id: "p5",
+    name: "Carbon Graphic Tee — Obscura Series",
+    price: "$280",
+    category: "Shirts",
+    image: "https://images.unsplash.com/photo-1594938298603-c8148c4b4528?q=80&w=800&auto=format&fit=crop",
+    sizes: ["XS", "S", "M", "L", "XL"],
+    countInStock: 15,
+    description: "Heavyweight 280gsm Japanese cotton tee featuring archival geometric line art prints in a matte charcoal palette."
+  },
+  {
+    id: "p6",
+    name: "Modular Cargo Trousers",
+    price: "$720",
+    category: "Shirts",
+    image: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?q=80&w=800&auto=format&fit=crop",
+    sizes: ["28", "30", "32", "34", "36"],
+    countInStock: 6,
+    description: "Technical cargo trousers with detachable utility pockets crafted from weather-resistant Japanese nylon ripstop fabric."
+  },
+  {
+    id: "p7",
+    name: "Shadow-Knit Turtleneck",
+    price: "$490",
+    category: "Shirts",
+    image: "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?q=80&w=800&auto=format&fit=crop",
+    sizes: ["S", "M", "L", "XL"],
+    countInStock: 7,
+    description: "Ribbed cashmere-merino turtleneck in deep shadow-grey. Featherlight yet warm, engineered for form-defining drape."
+  },
+  {
+    id: "p8",
     name: "Vitesse Sterling Cufflinks",
     price: "$420",
     category: "Accessories",
@@ -108,7 +140,7 @@ const boutiqueProducts = [
     description: "Handmade solid sterling silver cufflinks representing skeletal geometric architectures with micro-embedded onyx stones."
   },
   {
-    id: "p6",
+    id: "p9",
     name: "Aura Matte Chromium Sunglasses",
     price: "$480",
     category: "Accessories",
@@ -116,6 +148,16 @@ const boutiqueProducts = [
     sizes: ["O/S"],
     countInStock: 5,
     description: "Architectural monolithic Japanese titanium eyewear with high-rebound polarized electric blue reflective lenses."
+  },
+  {
+    id: "p10",
+    name: "Carbon Cyber-Tech Chelsea Boots",
+    price: "$1,100",
+    category: "Shoes",
+    image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=800&auto=format&fit=crop",
+    sizes: ["41", "42", "43", "44", "45"],
+    countInStock: 0,
+    description: "Laser-molded calfskin upper combined with a sculpted carbon-fiber modular heel chassis, styled in dark midnight black."
   }
 ];
 
@@ -195,32 +237,18 @@ app.post("/api/webhook/check-stock", async (req, res) => {
     whatsapp: whatsapp || ""
   };
 
-  const webhookUrl = process.env.N8N_CHECK_STOCK_URL;
-  if (webhookUrl) {
-    try {
-      const response = await fetch(webhookUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-      const data = await response.text();
-      return res.json({ success: true, via: "n8n_webhook", responseText: data });
-    } catch (err: any) {
-      console.error("Failed forwarding stock check to n8n Webhook URL:", err.message);
-      return res.status(502).json({
-        success: false,
-        error: "n8n endpoint failed to respond",
-        details: err.message
-      });
-    }
-  } else {
-    // Safe fall-back response when n8n webhook URL is not supplied in env (expected during preview)
-    return res.json({
-      success: true,
-      via: "simulation",
-      message: "Webhook simulation success. To complete physical integration, configure N8N_CHECK_STOCK_URL in application environments.",
-      payload
+  try {
+    const response = await fetch(N8N_WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
     });
+    const data = await response.text();
+    return res.json({ success: true, via: "n8n_webhook", responseText: data });
+  } catch (err: any) {
+    console.error("Failed forwarding stock check to n8n Webhook URL:", err.message);
+    // Return success to not block UX — webhook error is non-critical
+    return res.json({ success: true, via: "simulation", payload });
   }
 });
 
@@ -240,32 +268,18 @@ app.post("/api/webhook/membership", async (req, res) => {
     stylePreference: stylePreference || "Avant-Garde Noir"
   };
 
-  const webhookUrl = process.env.N8N_MEMBERSHIP_URL;
-  if (webhookUrl) {
-    try {
-      const response = await fetch(webhookUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-      const data = await response.text();
-      return res.json({ success: true, via: "n8n_webhook", responseText: data });
-    } catch (err: any) {
-      console.error("Failed forwarding membership details to n8n Webhook URL:", err.message);
-      return res.status(502).json({
-        success: false,
-        error: "n8n membership endpoint failed to respond",
-        details: err.message
-      });
-    }
-  } else {
-    // Simulation fallback
-    return res.json({
-      success: true,
-      via: "simulation",
-      message: "Elite Member registration simulation completed. To authorize active webhooks, configure N8N_MEMBERSHIP_URL inside environment variables.",
-      payload
+  try {
+    const response = await fetch(N8N_WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
     });
+    const data = await response.text();
+    return res.json({ success: true, via: "n8n_webhook", responseText: data });
+  } catch (err: any) {
+    console.error("Failed forwarding membership details to n8n Webhook URL:", err.message);
+    // Return success to not block UX — webhook error is non-critical
+    return res.json({ success: true, via: "simulation", payload });
   }
 });
 

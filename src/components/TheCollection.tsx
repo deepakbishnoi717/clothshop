@@ -16,7 +16,7 @@ export default function TheCollection({ onSelectCategory, selectedCategory }: Th
       desc: "Tailored overcoats, structural blazers, and mulberry silk shirting featuring dynamic geometric cuts.",
       icon: Pocket,
       gridSpan: "md:col-span-8 h-[280px] sm:h-[350px]",
-      image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=800&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop",
       tag: "THE ARCHIVE"
     },
     {
@@ -25,7 +25,7 @@ export default function TheCollection({ onSelectCategory, selectedCategory }: Th
       desc: "Modular Chelsea boots, carbon-chassis sneakers, and avant-garde leather boots built for active resilience.",
       icon: Footprints,
       gridSpan: "md:col-span-4 h-[280px] sm:h-[350px]",
-      image: "https://images.unsplash.com/photo-1520639888713-7851133b1ed0?q=80&w=800&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=800&auto=format&fit=crop",
       tag: "CARBON SERIES"
     },
     {
@@ -43,7 +43,7 @@ export default function TheCollection({ onSelectCategory, selectedCategory }: Th
       desc: "We do not manufacture vestments. We draft structural shields. Materials are sourced sustainably across Japan and Italy, engineered to reflect ambient ultraviolet signatures.",
       icon: Sparkles,
       gridSpan: "md:col-span-8 h-[280px] sm:h-[350px]",
-      image: "https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?q=80&w=800&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=800&auto=format&fit=crop",
       tag: "CONCEPT"
     }
   ];

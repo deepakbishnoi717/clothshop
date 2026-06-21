@@ -7,7 +7,49 @@
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 }
 
-/* Custom glow and transition effects matching Elegant Dark */
+/* =============================================
+   3D FLIP CARD UTILITIES
+   Tailwind v4 requires explicit CSS for 3D transforms
+   ============================================= */
+
+/* Backface visibility — hides the back face during rotation */
+.backface-hidden {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Preserve 3D transform context for nested elements */
+.preserve-3d {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+/* Rotate 180 degrees on Y axis (shows the back of a flip card) */
+.rotate-y-180 {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+/* Perspective containers for 3D card depth */
+.perspective-\[1000px\] {
+  perspective: 1000px;
+}
+.perspective-\[1200px\] {
+  perspective: 1200px;
+}
+
+/* Hide scrollbars but allow scrolling */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* =============================================
+   GLOW EFFECTS
+   ============================================= */
 .glow-blue-sm {
   box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
 }
@@ -16,5 +58,15 @@
 }
 .glow-white-sm {
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+}
+
+/* =============================================
+   PRODUCT IMAGE LOADING — smooth fade-in
+   ============================================= */
+img {
+  transition: opacity 0.4s ease;
+}
+img[src=""] {
+  opacity: 0;
 }
 

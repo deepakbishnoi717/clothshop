@@ -184,14 +184,14 @@ export default function Hero({
               <div className="absolute bottom-0 right-0 w-12 h-[1px] bg-violet-500" />
               <div className="absolute bottom-0 right-0 h-12 w-[1px] bg-violet-500" />
 
-              {/* Main Product Image (Floating high-end futuristic sneaker) */}
+              {/* Main Product Image (Floating high-end jacket) */}
               <img
-                src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=800&auto=format&fit=crop"
-                alt="Feature Stealth Sneaker"
+                src="https://images.unsplash.com/photo-1503341504253-dff4815485f1?q=80&w=800&auto=format&fit=crop"
+                alt="Feature Noir Jacket"
                 referrerPolicy="no-referrer"
                 className="w-4/5 h-auto object-contain select-none drop-shadow-[0_25px_40px_rgba(59,130,246,0.35)] relative pointer-events-none"
                 style={{ 
-                  transform: "translateZ(60px) rotate(-15deg)", 
+                  transform: "translateZ(60px) rotate(-5deg)", 
                   filter: "brightness(1.05)"
                 }}
               />
@@ -201,7 +201,7 @@ export default function Hero({
                 className="absolute bottom-6 left-6 font-mono text-[9px] tracking-widest text-[#a8a8a8] bg-black/60 border border-neutral-800 px-3 py-1.5 rounded-sm"
                 style={{ transform: "translateZ(30px)" }}
               >
-                PHANTOM EDITION // 01G
+                NOIR COLLECTION // AW26
               </div>
             </motion.div>
           </div>

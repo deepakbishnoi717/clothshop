@@ -12,7 +12,6 @@ import TheCollection from "./components/TheCollection";
 import NewArrivals from "./components/NewArrivals";
 import ProductCard from "./components/ProductCard";
 import MembershipForm from "./components/MembershipForm";
-import StylistWidget from "./components/StylistWidget";
 import AuthModal from "./components/AuthModal";
 import { ToastProvider, useToast } from "./components/Toast";
 import MagneticButton from "./components/MagneticButton";
@@ -357,12 +356,6 @@ function MainBoutiqueApp() {
         </div>
 
       </footer>
-
-      {/* 8. Floating Personal AI Stylist Bot Chatbot */}
-      <StylistWidget
-        isLoggedIn={!!currentUser}
-        username={currentUser?.name}
-      />
 
       {/* 9. VIP JWT Auth and Verification Modal */}
       <AuthModal
