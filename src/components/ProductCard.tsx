@@ -105,7 +105,6 @@ export default function ProductCard({ product, userEmail, isLoggedIn }: ProductC
             <img
               src={product.image}
               alt={product.name}
-              referrerPolicy="no-referrer"
               className="w-full h-full object-cover opacity-60 group-hover:opacity-85 transition-opacity duration-500"
             />
             {/* Matte Fade Gradient Overlay */}

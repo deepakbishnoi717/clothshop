@@ -138,7 +138,6 @@ export default function NewArrivals({ products, onProductClick }: NewArrivalsPro
                   <img
                     src={p.image}
                     alt={p.name}
-                    referrerPolicy="no-referrer"
                     className="w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700 ease-out"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d] via-transparent to-transparent" />

@@ -16,7 +16,7 @@ export default function TheCollection({ onSelectCategory, selectedCategory }: Th
       desc: "Tailored overcoats, structural blazers, and mulberry silk shirting featuring dynamic geometric cuts.",
       icon: Pocket,
       gridSpan: "md:col-span-8 h-[280px] sm:h-[350px]",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=800&auto=format&fit=crop&q=80",
       tag: "THE ARCHIVE"
     },
     {
@@ -25,7 +25,7 @@ export default function TheCollection({ onSelectCategory, selectedCategory }: Th
       desc: "Modular Chelsea boots, carbon-chassis sneakers, and avant-garde leather boots built for active resilience.",
       icon: Footprints,
       gridSpan: "md:col-span-4 h-[280px] sm:h-[350px]",
-      image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=800&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&auto=format&fit=crop&q=80",
       tag: "CARBON SERIES"
     },
     {
@@ -34,7 +34,7 @@ export default function TheCollection({ onSelectCategory, selectedCategory }: Th
       desc: "Solid sterling cufflinks, titanium sunglasses, and structural leather accessories to define the outline.",
       icon: Watch,
       gridSpan: "md:col-span-4 h-[280px] sm:h-[350px]",
-      image: "https://images.unsplash.com/photo-1617137968427-85924c800a22?q=80&w=800&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1617137968427-85924c800a22?w=800&auto=format&fit=crop&q=80",
       tag: "STERLING ORE"
     },
     {
@@ -43,7 +43,7 @@ export default function TheCollection({ onSelectCategory, selectedCategory }: Th
       desc: "We do not manufacture vestments. We draft structural shields. Materials are sourced sustainably across Japan and Italy, engineered to reflect ambient ultraviolet signatures.",
       icon: Sparkles,
       gridSpan: "md:col-span-8 h-[280px] sm:h-[350px]",
-      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=800&auto=format&fit=crop",
+      image: "https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=800&auto=format&fit=crop&q=80",
       tag: "CONCEPT"
     }
   ];
@@ -98,7 +98,6 @@ export default function TheCollection({ onSelectCategory, selectedCategory }: Th
                 <img
                   src={c.image}
                   alt={c.title}
-                  referrerPolicy="no-referrer"
                   className="w-full h-full object-cover opacity-20 group-hover:opacity-30 transition-all duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-black/40 to-transparent" />

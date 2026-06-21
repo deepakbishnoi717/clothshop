@@ -64,7 +64,7 @@ const boutiqueProducts = [
     name: "Phantom Tailored Wool Overcoat",
     price: "$1,850",
     category: "Shirts",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=800&auto=format&fit=crop&q=80",
     sizes: ["48", "50", "52", "54"],
     countInStock: 3,
     description: "Handcrafted double-breasted overcoat from premium Italian virgin wool, finished with a subtle anthracite metallic thread."
@@ -74,7 +74,7 @@ const boutiqueProducts = [
     name: "Noir Obsidian Leather Jacket",
     price: "$2,400",
     category: "Shirts",
-    image: "https://images.unsplash.com/photo-1503341504253-dff4815485f1?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&auto=format&fit=crop&q=80",
     sizes: ["S", "M", "L", "XL"],
     countInStock: 2,
     description: "Matte black full-grain calfskin leather jacket with premium sterling silver hardware and 3D silhouette contour stitching."
@@ -84,7 +84,7 @@ const boutiqueProducts = [
     name: "Liquid-Silk Charcoal Dress Shirt",
     price: "$650",
     category: "Shirts",
-    image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=800&auto=format&fit=crop&q=80",
     sizes: ["39", "40", "41", "42", "43"],
     countInStock: 8,
     description: "100% mulberry silk classic silhouette dress shirt with hand-carved mother of pearl buttons and deep carbon grey sheen."
@@ -94,17 +94,17 @@ const boutiqueProducts = [
     name: "Architectural Black Blazer",
     price: "$1,100",
     category: "Shirts",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1594938298603-c8148c4b4528?w=800&auto=format&fit=crop&q=80",
     sizes: ["S", "M", "L", "XL", "XXL"],
     countInStock: 4,
     description: "Sculpted peak-lapel blazer in jet-black Italian twill, structured with boning for an architectural silhouette that commands every room."
   },
   {
     id: "p5",
-    name: "Carbon Graphic Tee — Obscura Series",
+    name: "Carbon Graphic Tee - Obscura Series",
     price: "$280",
     category: "Shirts",
-    image: "https://images.unsplash.com/photo-1594938298603-c8148c4b4528?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&auto=format&fit=crop&q=80",
     sizes: ["XS", "S", "M", "L", "XL"],
     countInStock: 15,
     description: "Heavyweight 280gsm Japanese cotton tee featuring archival geometric line art prints in a matte charcoal palette."
@@ -114,7 +114,7 @@ const boutiqueProducts = [
     name: "Modular Cargo Trousers",
     price: "$720",
     category: "Shirts",
-    image: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=800&auto=format&fit=crop&q=80",
     sizes: ["28", "30", "32", "34", "36"],
     countInStock: 6,
     description: "Technical cargo trousers with detachable utility pockets crafted from weather-resistant Japanese nylon ripstop fabric."
@@ -124,7 +124,7 @@ const boutiqueProducts = [
     name: "Shadow-Knit Turtleneck",
     price: "$490",
     category: "Shirts",
-    image: "https://images.unsplash.com/photo-1578587018452-892bacefd3f2?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=800&auto=format&fit=crop&q=80",
     sizes: ["S", "M", "L", "XL"],
     countInStock: 7,
     description: "Ribbed cashmere-merino turtleneck in deep shadow-grey. Featherlight yet warm, engineered for form-defining drape."
@@ -134,7 +134,7 @@ const boutiqueProducts = [
     name: "Vitesse Sterling Cufflinks",
     price: "$420",
     category: "Accessories",
-    image: "https://images.unsplash.com/photo-1617137968427-85924c800a22?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1617137968427-85924c800a22?w=800&auto=format&fit=crop&q=80",
     sizes: ["O/S"],
     countInStock: 12,
     description: "Handmade solid sterling silver cufflinks representing skeletal geometric architectures with micro-embedded onyx stones."
@@ -144,19 +144,19 @@ const boutiqueProducts = [
     name: "Aura Matte Chromium Sunglasses",
     price: "$480",
     category: "Accessories",
-    image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=800&auto=format&fit=crop&q=80",
     sizes: ["O/S"],
     countInStock: 5,
     description: "Architectural monolithic Japanese titanium eyewear with high-rebound polarized electric blue reflective lenses."
   },
   {
     id: "p10",
-    name: "Carbon Cyber-Tech Chelsea Boots",
+    name: "Carbon Chelsea Boots",
     price: "$1,100",
     category: "Shoes",
-    image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&auto=format&fit=crop&q=80",
     sizes: ["41", "42", "43", "44", "45"],
-    countInStock: 0,
+    countInStock: 3,
     description: "Laser-molded calfskin upper combined with a sculpted carbon-fiber modular heel chassis, styled in dark midnight black."
   }
 ];
