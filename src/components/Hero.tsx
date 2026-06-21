@@ -186,7 +186,7 @@ export default function Hero({
 
               {/* Main Product Image — Premium Flat-Lay Clothing */}
               <img
-                src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&auto=format&fit=crop&q=80"
+                src="/api/img/photo-1591047139829-d91aecb6caea"
                 alt="Premium Dark Jacket Product"
                 className="w-4/5 h-auto object-contain select-none drop-shadow-[0_25px_40px_rgba(59,130,246,0.4)] relative pointer-events-none"
                 style={{ 

@@ -55,6 +55,35 @@ export function authenticateJWT(req: any, res: any, next: any) {
 
 // ---------------- API ENDPOINTS ----------------
 
+// Image proxy — fetches Unsplash images server-side so hotlink/CORS issues are bypassed
+app.get("/api/img/:photoId", async (req, res) => {
+  const { photoId } = req.params;
+  // Only allow Unsplash photo IDs (starts with 'photo-')
+  if (!photoId.startsWith("photo-")) {
+    return res.status(400).send("Invalid image ID");
+  }
+  const unsplashUrl = `https://images.unsplash.com/${photoId}?auto=format&fit=crop&w=800&q=80`;
+  try {
+    const imgRes = await fetch(unsplashUrl, {
+      headers: {
+        "User-Agent": "Mozilla/5.0 (compatible; ClothShop/1.0)",
+        "Referer": "https://unsplash.com/"
+      }
+    });
+    if (!imgRes.ok) {
+      return res.status(imgRes.status).send("Image not found");
+    }
+    const contentType = imgRes.headers.get("content-type") || "image/jpeg";
+    res.setHeader("Content-Type", contentType);
+    res.setHeader("Cache-Control", "public, max-age=86400"); // Cache for 24h
+    const buffer = await imgRes.arrayBuffer();
+    res.send(Buffer.from(buffer));
+  } catch (err: any) {
+    console.error("Image proxy error:", err.message);
+    res.status(502).send("Failed to fetch image");
+  }
+});
+
 // Products list
 const N8N_WEBHOOK_URL = "https://n8n-production-d6523.up.railway.app/webhook/015f3867-b6fd-4651-9b75-eee453aae6f3";
 
@@ -64,7 +93,7 @@ const boutiqueProducts = [
     name: "Phantom Tailored Wool Overcoat",
     price: "$1,850",
     category: "Shirts",
-    image: "https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=800&auto=format&fit=crop&q=80",
+    image: "/api/img/photo-1539533018447-63fcce2678e3",
     sizes: ["48", "50", "52", "54"],
     countInStock: 3,
     description: "Handcrafted double-breasted overcoat from premium Italian virgin wool, finished with a subtle anthracite metallic thread."
@@ -74,7 +103,7 @@ const boutiqueProducts = [
     name: "Noir Obsidian Leather Jacket",
     price: "$2,400",
     category: "Shirts",
-    image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&auto=format&fit=crop&q=80",
+    image: "/api/img/photo-1551028719-00167b16eac5",
     sizes: ["S", "M", "L", "XL"],
     countInStock: 2,
     description: "Matte black full-grain calfskin leather jacket with premium sterling silver hardware and 3D silhouette contour stitching."
@@ -84,7 +113,7 @@ const boutiqueProducts = [
     name: "Liquid-Silk Charcoal Dress Shirt",
     price: "$650",
     category: "Shirts",
-    image: "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=800&auto=format&fit=crop&q=80",
+    image: "/api/img/photo-1489987707025-afc232f7ea0f",
     sizes: ["39", "40", "41", "42", "43"],
     countInStock: 8,
     description: "100% mulberry silk classic silhouette dress shirt with hand-carved mother of pearl buttons and deep carbon grey sheen."
@@ -94,7 +123,7 @@ const boutiqueProducts = [
     name: "Architectural Black Blazer",
     price: "$1,100",
     category: "Shirts",
-    image: "https://images.unsplash.com/photo-1594938298603-c8148c4b4528?w=800&auto=format&fit=crop&q=80",
+    image: "/api/img/photo-1521572163474-6864f9cf17ab",
     sizes: ["S", "M", "L", "XL", "XXL"],
     countInStock: 4,
     description: "Sculpted peak-lapel blazer in jet-black Italian twill, structured with boning for an architectural silhouette that commands every room."
@@ -104,7 +133,7 @@ const boutiqueProducts = [
     name: "Carbon Graphic Tee - Obscura Series",
     price: "$280",
     category: "Shirts",
-    image: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&auto=format&fit=crop&q=80",
+    image: "/api/img/photo-1583743814966-8936f5b7be1a",
     sizes: ["XS", "S", "M", "L", "XL"],
     countInStock: 15,
     description: "Heavyweight 280gsm Japanese cotton tee featuring archival geometric line art prints in a matte charcoal palette."
@@ -114,7 +143,7 @@ const boutiqueProducts = [
     name: "Modular Cargo Trousers",
     price: "$720",
     category: "Shirts",
-    image: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=800&auto=format&fit=crop&q=80",
+    image: "/api/img/photo-1542272604-787c3835535d",
     sizes: ["28", "30", "32", "34", "36"],
     countInStock: 6,
     description: "Technical cargo trousers with detachable utility pockets crafted from weather-resistant Japanese nylon ripstop fabric."
@@ -124,7 +153,7 @@ const boutiqueProducts = [
     name: "Shadow-Knit Turtleneck",
     price: "$490",
     category: "Shirts",
-    image: "https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=800&auto=format&fit=crop&q=80",
+    image: "/api/img/photo-1576566588028-4147f3842f27",
     sizes: ["S", "M", "L", "XL"],
     countInStock: 7,
     description: "Ribbed cashmere-merino turtleneck in deep shadow-grey. Featherlight yet warm, engineered for form-defining drape."
@@ -134,7 +163,7 @@ const boutiqueProducts = [
     name: "Vitesse Sterling Cufflinks",
     price: "$420",
     category: "Accessories",
-    image: "https://images.unsplash.com/photo-1617137968427-85924c800a22?w=800&auto=format&fit=crop&q=80",
+    image: "/api/img/photo-1617137968427-85924c800a22",
     sizes: ["O/S"],
     countInStock: 12,
     description: "Handmade solid sterling silver cufflinks representing skeletal geometric architectures with micro-embedded onyx stones."
@@ -144,7 +173,7 @@ const boutiqueProducts = [
     name: "Aura Matte Chromium Sunglasses",
     price: "$480",
     category: "Accessories",
-    image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=800&auto=format&fit=crop&q=80",
+    image: "/api/img/photo-1511499767150-a48a237f0083",
     sizes: ["O/S"],
     countInStock: 5,
     description: "Architectural monolithic Japanese titanium eyewear with high-rebound polarized electric blue reflective lenses."
@@ -154,7 +183,7 @@ const boutiqueProducts = [
     name: "Carbon Chelsea Boots",
     price: "$1,100",
     category: "Shoes",
-    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&auto=format&fit=crop&q=80",
+    image: "/api/img/photo-1542291026-7eec264c27ff",
     sizes: ["41", "42", "43", "44", "45"],
     countInStock: 3,
     description: "Laser-molded calfskin upper combined with a sculpted carbon-fiber modular heel chassis, styled in dark midnight black."
